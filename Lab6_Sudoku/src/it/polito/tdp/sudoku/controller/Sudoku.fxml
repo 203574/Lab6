@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.sudoku.controller.SudokuController">
+<BorderPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.sudoku.controller.SudokuController">
    <left>
       <Pane prefHeight="330.0" prefWidth="523.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="381.0" layoutY="43.0" mnemonicParsing="false" onAction="#doGenerate" text="Genera Sudoku" />
             <Button layoutX="382.0" layoutY="160.0" mnemonicParsing="false" onAction="#doSolve" prefHeight="27.0" prefWidth="112.0" text="Risolvi Sudoku" />
-            <ChoiceBox layoutX="381.0" layoutY="88.0" prefHeight="27.0" prefWidth="112.0" />
+            <ChoiceBox fx:id="boxDifficolta" layoutX="381.0" layoutY="88.0" prefHeight="27.0" prefWidth="112.0" />
             <GridPane layoutX="128.0" layoutY="35.0" prefHeight="87.0" prefWidth="101.0" style="-fx-border-width: 2px; -fx-border-color: #EEE;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -6,19 +6,24 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.sudoku.model.SudokuGenerator;
+import it.polito.tdp.sudoku.model.SudokuSolver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
-public class SudokuController {
-
+public class SudokuController
+{
+	private SudokuSolver ss = new SudokuSolver();
 	final static int levelEasy = 45;
 	final static int levelAdvanced = 50;
 	final static int levelExpert = 55;
 	
     @FXML
     private ResourceBundle resources;
-
+ 
+    @FXML
+    private ChoiceBox<Integer> boxDifficolta;
     @FXML
     private URL location;
 
@@ -265,24 +270,31 @@ public class SudokuController {
     @FXML
     private Label lbl81;
     
-    List<Label> labelList = new ArrayList<Label>(); 
+    List<Label> labelList = new ArrayList<Label>();
+    
     
     @FXML
-    void doGenerate(ActionEvent event){
+    void doGenerate(ActionEvent event)
+    {
     	// Per generare un nuova nuova griglia di Sudoku
 		SudokuGenerator sg = new SudokuGenerator();
-		int [][] matrix = sg.nextBoard(levelExpert);
+		int [][] matrix = sg.nextBoard(boxDifficolta.getValue());
+		ss.setMatrice(matrix);
 		
 		printMatrixOnScreen(matrix);
     }
     
     @FXML
-    void doSolve(ActionEvent event){
-    	
+    void doSolve(ActionEvent event)
+    {
+    	ss.solve(0);
+    	printMatrixOnScreen(ss.getMatrice());
     }
     
     @FXML
-    void initialize() {
+    void initialize()
+    {
+    	assert boxDifficolta != null : "fx:id=\"boxDifficolta\" was not injected: check your FXML file 'Sudoku.fxml'.";
         assert lbl10 != null : "fx:id=\"lbl10\" was not injected: check your FXML file 'Sudoku.fxml'.";
         assert lbl11 != null : "fx:id=\"lbl11\" was not injected: check your FXML file 'Sudoku.fxml'.";
         assert lbl12 != null : "fx:id=\"lbl12\" was not injected: check your FXML file 'Sudoku.fxml'.";
@@ -446,10 +458,17 @@ public class SudokuController {
         labelList.add(lbl79);
         labelList.add(lbl80);
         labelList.add(lbl81);
+        
+        boxDifficolta.getItems().add(levelEasy);
+        boxDifficolta.getItems().add(levelAdvanced);
+        boxDifficolta.getItems().add(levelExpert);
+        
+        
     }
     
     
-    void printMatrixOnScreen(int[][] matrix) {
+    void printMatrixOnScreen(int[][] matrix)
+    {
     	int counter = 0;
     	for (int i = 0; i < 3; i++)
     		for (int j=0; j< 3; j++)

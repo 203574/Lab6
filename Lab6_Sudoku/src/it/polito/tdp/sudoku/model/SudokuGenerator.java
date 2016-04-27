@@ -2,7 +2,8 @@ package it.polito.tdp.sudoku.model;
 
 import java.util.Random;
 
-public class SudokuGenerator {
+public class SudokuGenerator 
+{
 	
 	// source:
 	// https://github.com/SomeKittens/Sudoku-Project/blob/master/SudokuGenerator.java
@@ -14,7 +15,8 @@ public class SudokuGenerator {
 	/**
 	 * Constructor. Resets board to zeros
 	 */
-	public SudokuGenerator() {
+	public SudokuGenerator() 
+	{
 		board = new int[BOARD_WIDTH][BOARD_HEIGHT];
 	}
 
@@ -25,7 +27,8 @@ public class SudokuGenerator {
 	 *            the number of blank spaces to insert
 	 * @return board, a partially completed 9x9 Sudoku board
 	 */
-	public int[][] nextBoard(int difficulty) {
+	public int[][] nextBoard(int difficulty) 
+	{
 		board = new int[BOARD_WIDTH][BOARD_HEIGHT];
 		nextCell(0, 0);
 		makeHoles(difficulty);
@@ -43,7 +46,8 @@ public class SudokuGenerator {
 	 * @return true if the board completed legally, false if this cell has no
 	 *         legal solutions.
 	 */
-	public boolean nextCell(int x, int y) {
+	public boolean nextCell(int x, int y) 
+	{
 		int nextX = x;
 		int nextY = y;
 		int[] toCheck = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -92,12 +96,15 @@ public class SudokuGenerator {
 	 *            The value to check in said cell.
 	 * @return True if current is legal, false otherwise.
 	 */
-	private boolean legalMove(int x, int y, int current) {
-		for (int i = 0; i < 9; i++) {
+	private boolean legalMove(int x, int y, int current) 
+	{
+		for (int i = 0; i < 9; i++)
+		{
 			if (current == board[x][i])
 				return false;
 		}
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 9; i++)
+		{
 			if (current == board[i][y])
 				return false;
 		}
@@ -127,7 +134,8 @@ public class SudokuGenerator {
 	 * @param holesToMake
 	 *            How many 0s to put in the board.
 	 */
-	public void makeHoles(int holesToMake) {
+	public void makeHoles(int holesToMake)
+	{
 		/*
 		 * We define difficulty as follows: Easy: 32+ clues (49 or fewer holes)
 		 * Medium: 27-31 clues (50-54 holes) Hard: 26 or fewer clues (54+ holes)
@@ -138,9 +146,11 @@ public class SudokuGenerator {
 		double remainingHoles = (double) holesToMake;
 
 		for (int i = 0; i < 9; i++)
-			for (int j = 0; j < 9; j++) {
+			for (int j = 0; j < 9; j++) 
+			{
 				double holeChance = remainingHoles / remainingSquares;
-				if (Math.random() <= holeChance) {
+				if (Math.random() <= holeChance) 
+				{
 					board[i][j] = 0;
 					remainingHoles--;
 				}
